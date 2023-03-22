@@ -59,7 +59,8 @@ const SignForm = () => {
     },
     validationSchema: Yup.object({
       email: Yup.string().email('Please enter a valid email address.').required('Please enter a valid email address.'),
-      name: Yup.string().min(2)
+      name: Yup.string().min(4, "Name should be minimum 4 characters").required("Please enter your name"),
+      password: Yup.string().min(4, "Password should be minimum 4 characters").required("Password is required")
     }),
     onSubmit: values => {
       const body = {
@@ -97,7 +98,7 @@ const SignForm = () => {
             <p className='text-error text-[14px] mb-4'>{formik.errors.email}</p>
           )}
       
-      <div className="relative mb-6 ">
+      <div className={`relative mb-6 ${formik.touched.name && formik.errors.name && "mb-2"}`}>
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
           <img src={nameIcon} alt="name icon" className='w-5 h-5'/>
         </div>
@@ -106,14 +107,18 @@ const SignForm = () => {
           id="name" 
           name='name'
           
-          className="bg-white border border-inputBorder placeholder-placeHolder text-authText  text-sm rounded-2xl block w-full pl-10 p-2.5 placeholder:text-sm focus:outline-authText "
+          className={`bg-white border border-inputBorder placeholder-placeHolder text-authText  text-sm rounded-2xl block w-full pl-10 p-2.5 placeholder:text-sm focus:outline-authText ${formik.touched.name && formik.errors.name && "border-error"}`}
           placeholder='Your Name'
           onChange={formik.handleChange}
           value={formik.values.name}
          
           />
       </div>
-      <div className="relative mb-6 ">
+      {formik.touched.name && formik.errors.name && (
+            <p className='text-error text-[14px] mb-4'>{formik.errors.name}</p>
+          )}
+
+      <div className={`relative mb-6 ${formik.touched.password && formik.errors.password && "mb-2"}`}>
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
           <img src={lockIcon} alt="lock icon" className='w-5 h-5'/>
         </div>
@@ -122,7 +127,7 @@ const SignForm = () => {
           id="password" 
           name='password' 
           
-          className="bg-white border border-inputBorder placeholder-placeHolder text-authText  text-sm rounded-2xl block w-full pl-10 p-2.5 placeholder:text-sm focus:outline-authText "
+          className={`bg-white border border-inputBorder placeholder-placeHolder text-authText  text-sm rounded-2xl block w-full pl-10 p-2.5 placeholder:text-sm focus:outline-authText ${formik.touched.password && formik.errors.password && "border-error"}`}
           placeholder='Your password'
           onChange={(e)=>{
             formik.handleChange(e)
@@ -134,7 +139,11 @@ const SignForm = () => {
           <div className="absolute inset-y-0 right-0 flex items-center pr-3 ">
           <img src={eyeIcon} alt="eye icon" className='w-5 h-5 cursor-pointer ' onClick={() => setShowPassword(!showPassword)}/>
           </div>
+         
       </div>
+      {formik.touched.password && formik.errors.password && (
+            <p className='text-error text-[14px] mb-4'>{formik.errors.password}</p>
+          )}
       <div className='flex justify-between items-center mx-6'>
         <div className={`${passwordStrength >=1 ? "bg-[#38CB89]" : "bg-inputBorder"} w-16 h-0.5 `}/>
         <div className={`${passwordStrength >=2 ? "bg-[#38CB89]" : "bg-inputBorder"} w-16 h-0.5 `}/>

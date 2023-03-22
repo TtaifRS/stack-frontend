@@ -5,7 +5,7 @@ import { NavBarAuth, SignUpForm } from '../sections'
 const SignUp = () => {
   return (
    <>
-    <div className='h-screen overflow-hidden'>
+    <div className='h-screen '>
       <NavBarAuth/>
       <SignUpForm/>
     </div>
