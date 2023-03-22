@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: 'Inter', sans-serif;
+}
+
+a.active {
+	background-color: #f0f5fa;
+}
+
+.pagination li {
+	margin: 8px;
+	padding: 4px 8px;
+	border-radius: 4px;
+	border: 1px solid;
+	border-color: #f1f1f1;
+}
+
+.pagination .selected {
+	background-color: #377dff;
+	color: white;
+}
