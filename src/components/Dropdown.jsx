@@ -1,5 +1,5 @@
 import React from 'react'
-import downIcon from '../assets/down.svg'
+
 const Dropdown = () => {
   return (
     <div className="relative w-full lg:max-w-sm">
